@@ -17,7 +17,7 @@ I want to create a small pipeline which fetches data from lichess.org and calcul
 This pipeline is run daily using GitHub Actions.
 
 ### 1. Fetch game results using the [Lichess API](https://lichess.org/api)
-
+ 
 Use `curl` to make a GET request to the `https://lichess.org/api/games/user/indexinator` endpoint.
 Keep in mind the `Content type` is `application/x-ndjson`
 
