@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Fetch game results from Lichess API
-# Usage: ./fetch_games.sh [username] [max_games]
+# Usage: ./fetch_games.sh [username]
 
 USERNAME=${1:-indexinator}
 
