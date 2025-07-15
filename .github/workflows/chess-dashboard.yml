@@ -1,0 +1,31 @@
+name: Chess Dashboard
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Run daily at 8 AM UTC
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Fetch game data
+      run: ./fetch_games.sh
+    
+    - name: Clean game data
+      run: ./clean_games.sh
+    
+    - name: Calculate metrics
+      run: ./calculate_metrics.sh
+    
+    - name: Commit and push results
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git diff --staged --quiet || git commit -m "Update chess metrics $(date +%Y-%m-%d)"
+        git push
